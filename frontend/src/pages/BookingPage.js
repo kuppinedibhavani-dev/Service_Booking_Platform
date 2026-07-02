@@ -14,22 +14,29 @@ function BookingPage() {
   const [totalAmount, setTotalAmount] = useState("");
 
   const handleBooking = async () => {
-  try {
-    await API.post("/bookings", {
-      service: id,
-      bookingDate,
-      timeSlot,
-      address,
-      totalAmount
-    });
+    try {
+      const bookingRes = await API.post("/bookings", {
+        service: id,
+        bookingDate,
+        timeSlot,
+        address,
+        totalAmount
+      });
 
-    alert("Booking created successfully!");
-    navigate("/dashboard");
-  } catch (error) {
-    console.error(error);
-    alert("Booking failed");
-  }
-};
+      await API.post("/notifications/send", {
+        bookingId: bookingRes.data.booking._id,
+        type: "email",
+        message: "Your booking has been created successfully."
+      });
+
+      alert("Booking created successfully!");
+      navigate("/dashboard");
+
+    } catch (error) {
+      console.error(error);
+      alert("Booking failed");
+    }
+  };
 
   return (
     <div className="container">
