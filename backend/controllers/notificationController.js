@@ -2,16 +2,16 @@ const Notification = require("../models/Notification");
 const Booking = require("../models/Booking");
 const nodemailer = require("nodemailer");
 
-
-// Email transporter
+// Email transporter (Fixed SMTP config)
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false,
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS
   }
 });
-
 
 // Send Notification
 const sendBookingNotification = async (req, res) => {
@@ -35,10 +35,12 @@ const sendBookingNotification = async (req, res) => {
     });
 
     if (type === "email") {
+      console.log("Sending mail to:", booking.user.email);
+
       await transporter.sendMail({
         from: process.env.EMAIL_USER,
         to: booking.user.email,
-        subject: "Booking Notification",
+        subject: "Booking Confirmation",
         text: message
       });
 
@@ -52,13 +54,14 @@ const sendBookingNotification = async (req, res) => {
     });
 
   } catch (error) {
+    console.error("Mail Error:", error.message);
+
     res.status(500).json({
       success: false,
       message: error.message
     });
   }
 };
-
 
 // Get My Notifications
 const getMyNotifications = async (req, res) => {
@@ -80,7 +83,6 @@ const getMyNotifications = async (req, res) => {
   }
 };
 
-
 // Get All Notifications (Admin)
 const getAllNotifications = async (req, res) => {
   try {
@@ -100,7 +102,6 @@ const getAllNotifications = async (req, res) => {
     });
   }
 };
-
 
 module.exports = {
   sendBookingNotification,
