@@ -13,30 +13,35 @@ function BookingPage() {
   const [address, setAddress] = useState("");
   const [totalAmount, setTotalAmount] = useState("");
 
-  const handleBooking = async () => {
-    try {
-      const bookingRes = await API.post("/bookings", {
-        service: id,
-        bookingDate,
-        timeSlot,
-        address,
-        totalAmount
-      });
+ const handleBooking = async () => {
+  try {
+    const bookingRes = await API.post("/bookings", {
+      service: id,
+      bookingDate,
+      timeSlot,
+      address,
+      totalAmount
+    });
 
+    try {
       await API.post("/notifications/send", {
         bookingId: bookingRes.data.booking._id,
         type: "email",
-        message: "Your booking has been created successfully."
+        message:
+          "Your booking has been created successfully. Our team will contact you shortly."
       });
-
-      alert("Booking created successfully!");
-      navigate("/dashboard");
-
-    } catch (error) {
-      console.error(error.response.data);
-alert(error.response.data.message);
+    } catch (mailError) {
+      console.error("Mail failed:", mailError.response?.data);
     }
-  };
+
+    alert("Booking created successfully!");
+    navigate("/dashboard");
+
+  } catch (error) {
+    console.error(error.response?.data);
+    alert(error.response?.data?.message || "Booking failed");
+  }
+};
 
   return (
     <div className="container">
@@ -53,12 +58,18 @@ alert(error.response.data.message);
 
         <div className="booking-section">
           <label>Time Slot</label>
-          <input
-            type="text"
-            placeholder="Ex: 10:00 AM - 11:00 AM"
-            value={timeSlot}
-            onChange={(e) => setTimeSlot(e.target.value)}
-          />
+          <select
+  value={timeSlot}
+  onChange={(e) => setTimeSlot(e.target.value)}
+>
+  <option value="">Select Time Slot</option>
+  <option value="09:00 AM - 10:00 AM">09:00 AM - 10:00 AM</option>
+  <option value="10:00 AM - 11:00 AM">10:00 AM - 11:00 AM</option>
+  <option value="11:00 AM - 12:00 PM">11:00 AM - 12:00 PM</option>
+  <option value="01:00 PM - 02:00 PM">01:00 PM - 02:00 PM</option>
+  <option value="02:00 PM - 03:00 PM">02:00 PM - 03:00 PM</option>
+  <option value="04:00 PM - 05:00 PM">04:00 PM - 05:00 PM</option>
+</select>
         </div>
 
         <div className="booking-section">

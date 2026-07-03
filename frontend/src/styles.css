@@ -236,3 +236,10 @@ body.dark .navbar {
   background: #007bff;
   color: white;
 }
+
+.booking-section select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
