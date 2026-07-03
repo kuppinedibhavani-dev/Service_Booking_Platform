@@ -62,40 +62,33 @@ const verifyPayment = async (req, res) => {
       bookingId
     } = req.body;
 
-    const payment = await Payment.findOne({
-      razorpayOrderId: razorpay_order_id
-    });
+    const booking = await Booking.findById(bookingId);
 
-    if (!payment) {
+    if (!booking) {
       return res.status(404).json({
         success: false,
-        message: "Payment not found"
+        message: "Booking not found"
       });
     }
 
-    payment.razorpayPaymentId = razorpay_payment_id;
-    payment.status = "paid";
+    booking.paymentStatus = "paid";
+    await booking.save();
 
-    await payment.save();
-
-    await Booking.findByIdAndUpdate(bookingId, {
-      paymentStatus: "paid"
+    
+    await Notification.create({
+      user: booking.user,
+      booking: booking._id,
+      type: "email",
+      message: "Payment successful. Your booking is confirmed."
     });
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: "Payment verified successfully"
     });
 
-    await Notification.create({
-  user: booking.user,
-  booking: booking._id,
-  type: "email",
-  message: "Payment successful. Your booking is confirmed."
-});
-
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: error.message
     });
