@@ -31,6 +31,7 @@ app.use(cors({
     "http://localhost:3000",
     "https://service-booking-platform-weld.vercel.app/"
   ],
+   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
 
