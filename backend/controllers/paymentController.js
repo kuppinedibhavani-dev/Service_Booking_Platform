@@ -87,6 +87,13 @@ const verifyPayment = async (req, res) => {
       message: "Payment verified successfully"
     });
 
+    await Notification.create({
+  user: booking.user,
+  booking: booking._id,
+  type: "email",
+  message: "Payment successful. Your booking is confirmed."
+});
+
   } catch (error) {
     res.status(500).json({
       success: false,
