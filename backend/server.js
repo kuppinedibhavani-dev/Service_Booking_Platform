@@ -26,12 +26,13 @@ const limiter = rateLimit({
 app.use(limiter);
 
 // Enable CORS
-app.use(
-  cors({
-    origin: "*",
-    credentials: true
-  })
-);
+app.use(cors({
+  origin: [
+    "http://localhost:3000",
+    "https://service-booking-platform-weld.vercel.app/"
+  ],
+  credentials: true
+}));
 
 
 app.use(express.json());
