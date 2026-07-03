@@ -25,7 +25,7 @@ const createOrder = async (req, res) => {
     const options = {
       amount: amount * 100,
       currency: "INR",
-      receipt: `receipt_${bookingId}`
+      receipt: `receipt_${Date.now()}`
     };
 
     const order = await razorpay.orders.create(options);
@@ -72,15 +72,9 @@ const verifyPayment = async (req, res) => {
     }
 
     booking.paymentStatus = "paid";
-    await booking.save();
+    booking.status = "confirmed";
 
-    
-    await Notification.create({
-      user: booking.user,
-      booking: booking._id,
-      type: "email",
-      message: "Payment successful. Your booking is confirmed."
-    });
+    await booking.save();
 
     return res.status(200).json({
       success: true,
@@ -88,6 +82,8 @@ const verifyPayment = async (req, res) => {
     });
 
   } catch (error) {
+    console.error("Verify Payment Error:", error.message);
+
     return res.status(500).json({
       success: false,
       message: error.message

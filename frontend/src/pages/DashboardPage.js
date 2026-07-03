@@ -35,20 +35,30 @@ function DashboardPage() {
       order_id: order.id,
 
       handler: async function (response) {
-        try {
-          await API.post("/payments/verify", {
-            razorpay_order_id: response.razorpay_order_id,
-            razorpay_payment_id: response.razorpay_payment_id,
-            bookingId
-          });
+       try {
+  await API.post("/payments/verify", {
+    razorpay_order_id: response.razorpay_order_id,
+    razorpay_payment_id: response.razorpay_payment_id,
+    bookingId
+  });
 
-          alert("Payment successful!");
+  try {
+    await API.post("/notifications/send", {
+      bookingId,
+      type: "email",
+      message: "Payment successful. Your booking is confirmed."
+    });
+  } catch (mailError) {
+    console.log("Mail failed:", mailError.response?.data);
+  }
 
-          fetchBookings();
-        } catch (error) {
-          console.error(error);
-          alert("Payment verification failed");
-        }
+  alert("Payment successful!");
+  fetchBookings();
+
+} catch (error) {
+  console.error(error.response?.data);
+  alert("Payment verification failed");
+}
       },
 
       theme: {
