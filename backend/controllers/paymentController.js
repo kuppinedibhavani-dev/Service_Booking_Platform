@@ -82,7 +82,7 @@ const verifyPayment = async (req, res) => {
     });
 
   } catch (error) {
-    console.error("Verify Payment Error:", error.message);
+    console.error("Verify Payment Full Error:", error);
 
     return res.status(500).json({
       success: false,
