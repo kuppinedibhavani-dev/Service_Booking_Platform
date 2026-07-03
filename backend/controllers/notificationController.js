@@ -4,16 +4,13 @@ const nodemailer = require("nodemailer");
 
 // Email transporter (Fixed SMTP config)
 const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
+  host: "smtp-relay.brevo.com",
   port: 587,
   secure: false,
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS
-  },
-  connectionTimeout: 10000,
-  greetingTimeout: 10000,
-  socketTimeout: 10000
+  }
 });
 
 // Send Notification
@@ -41,7 +38,7 @@ const sendBookingNotification = async (req, res) => {
       console.log("Sending mail to:", booking.user.email);
 
       await transporter.sendMail({
-        from: process.env.EMAIL_USER,
+        from: "ServeEasy b0c818001@smtp-brevo.com",
         to: booking.user.email,
         subject: "Booking Confirmation",
         text: message
