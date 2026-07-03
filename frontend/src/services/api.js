@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://service-booking-platform-lakl.onrender.com"
+  baseURL: "https://service-booking-platform-lakl.onrender.com/api"
 });
 
 API.interceptors.request.use((req) => {
