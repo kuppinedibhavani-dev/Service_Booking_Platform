@@ -33,8 +33,8 @@ function BookingPage() {
       navigate("/dashboard");
 
     } catch (error) {
-      console.error(error);
-      alert("Booking failed");
+      console.error(error.response.data);
+alert(error.response.data.message);
     }
   };
 
