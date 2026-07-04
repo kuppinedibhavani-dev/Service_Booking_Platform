@@ -1,70 +1,315 @@
-# Getting Started with Create React App
+# 🚀 Service Booking Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack web application that allows customers to browse services, book appointments, make secure online payments, and manage their bookings. The platform also provides an admin dashboard to manage services, bookings, revenue, and notifications.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🌐 Live Demo
 
-### `npm start`
+### Frontend
+https://service-booking-platform-weld.vercel.app
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Backend API
+https://service-booking-platform-lakl.onrender.com
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+# 📌 Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 👤 User Features
 
-### `npm run build`
+- User Registration
+- User Login & Authentication
+- JWT Protected Routes
+- Browse Available Services
+- View Service Details
+- Book Services
+- Select Booking Date
+- Select Time Slot
+- Online Payment Integration (Razorpay)
+- View Booking History
+- Cancel Bookings
+- Dark / Light Mode
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 👨‍💼 Admin Features
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Admin Login
+- Add New Services
+- Update Services
+- Delete Services
+- View All Bookings
+- Update Booking Status
+- Revenue Dashboard
+- View Notifications
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 💳 Payment Features
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Razorpay Payment Gateway
+- Payment Verification
+- Payment Status Tracking
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 🔔 Notification Features
 
-## Learn More
+- Booking Confirmation Notifications
+- Email Notification Integration
+- Notification History
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# 🛠 Tech Stack
 
-### Code Splitting
+## Frontend
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- React.js
+- React Router
+- Axios
+- CSS3
+- React Calendar
 
-### Analyzing the Bundle Size
+## Backend
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT Authentication
+- Bcrypt
+- Nodemailer
+- Razorpay
 
-### Making a Progressive Web App
+## Security
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Helmet
+- CORS
+- Express Rate Limit
+- XSS Clean
+- Environment Variables
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+# 📂 Project Structure
 
-### Deployment
+```
+Service_Booking_Platform
+│
+├── backend
+│   ├── config
+│   ├── controllers
+│   ├── middleware
+│   ├── models
+│   ├── routes
+│   ├── tests
+│   └── server.js
+│
+├── frontend
+│   ├── src
+│   ├── public
+│   └── package.json
+│
+├── docs
+│   ├── PERFORMANCE_REPORT.md
+│   ├── SECURITY_AUDIT.md
+│   └── TEST_REPORT.md
+│
+│
+└── README.md
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+# 🔒 Security Features
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- JWT Authentication
+- Password Hashing using bcrypt
+- Helmet Security Headers
+- CORS Protection
+- Rate Limiting
+- XSS Protection
+- Protected Routes
+- Environment Variables
+
+---
+
+# ⚡ Performance Optimizations
+
+- Optimized MongoDB Queries
+- Backend Caching
+- API Performance Improvements
+- Reusable Axios Instance
+- Optimized React Components
+
+Detailed report available in:
+
+```
+docs/PERFORMANCE_REPORT.md
+```
+
+---
+
+# 🧪 Testing
+
+The project includes backend and frontend functional testing.
+
+### Backend
+
+- Authentication
+- Services CRUD
+- Booking APIs
+- Payment APIs
+- Notification APIs
+- Protected Routes
+
+### Frontend
+
+- Registration
+- Login
+- Booking
+- Dashboard
+- Payment Flow
+- Admin Dashboard
+
+Detailed report:
+
+```
+docs/TEST_REPORT.md
+```
+
+---
+
+# 🔐 Security Audit
+
+Security audit document:
+
+```
+docs/SECURITY_AUDIT.md
+```
+
+---
+
+# 📦 Installation
+
+## Clone Repository
+
+```bash
+git clone https://github.com/kuppinedibhavani-dev/Service_Booking_Platform
+```
+
+---
+
+## Backend Setup
+
+```bash
+cd backend
+
+npm install
+```
+
+Create a `.env` file:
+
+```env
+PORT=5000
+
+MONGO_URI=YOUR_MONGODB_URI
+
+JWT_SECRET=YOUR_SECRET
+
+RAZORPAY_KEY_ID=YOUR_KEY
+
+RAZORPAY_KEY_SECRET=YOUR_SECRET
+
+EMAIL_USER=YOUR_EMAIL
+
+EMAIL_PASS=YOUR_PASSWORD
+```
+
+Run backend:
+
+```bash
+npm run dev
+```
+
+---
+
+## Frontend Setup
+
+```bash
+cd frontend
+
+npm install
+
+npm start
+```
+
+---
+
+# 📡 API Endpoints
+
+## Authentication
+
+```
+POST /api/auth/register
+
+POST /api/auth/login
+```
+
+## Services
+
+```
+GET /api/services
+
+POST /api/services
+
+PUT /api/services/:id
+
+DELETE /api/services/:id
+```
+
+## Bookings
+
+```
+POST /api/bookings
+
+GET /api/bookings
+
+PUT /api/bookings/:id
+
+DELETE /api/bookings/:id
+```
+
+## Payments
+
+```
+POST /api/payments/create-order
+
+POST /api/payments/verify
+
+GET /api/payments/revenue
+```
+
+## Notifications
+
+```
+POST /api/notifications/send
+
+GET /api/notifications
+```
+
+---
+
+# 🚀 Future Enhancements
+
+- Google Login
+- OTP Authentication
+- Live Chat Support
+- Real-time Notifications
+- Booking Calendar Improvements
+- Service Reviews & Ratings
+- Invoice PDF Generation
+- Email Templates
+- SMS Notifications
