@@ -29,21 +29,36 @@ const createBooking = async (req, res) => {
       status: { $ne: "cancelled" }
     });
 
-    if (existingBooking) {
-      return res.status(400).json({
-        success: false,
-        message: "Time slot already booked"
-      });
-    }
+   if (existingBooking) {
+  return res.status(400).json({
+    success: false,
+    message: "Time slot already booked"
+  });
+}
 
-    const booking = await Booking.create({
-      user: req.user._id,
-      service,
-      bookingDate,
-      timeSlot,
-      address,
-      totalAmount
-    });
+    // Check if the selected time slot is already booked on the same day
+const startOfDay = new Date(bookingDate);
+startOfDay.setHours(0, 0, 0, 0);
+
+const endOfDay = new Date(bookingDate);
+endOfDay.setHours(23, 59, 59, 999);
+
+const existingBooking = await Booking.findOne({
+  service,
+  timeSlot,
+  bookingDate: {
+    $gte: startOfDay,
+    $lte: endOfDay
+  },
+  status: { $ne: "cancelled" }
+});
+
+if (existingBooking) {
+  return res.status(400).json({
+    success: false,
+    message: "Time slot already booked"
+  });
+}
 
     res.status(201).json({
       success: true,
